@@ -65,6 +65,9 @@ flutter:
     - assets/images/mag2.png
     - assets/images/mag3.png
     - assets/images/mag4.png
+    - assets/images/mag5.png
+    - assets/images/Author.jpg
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
