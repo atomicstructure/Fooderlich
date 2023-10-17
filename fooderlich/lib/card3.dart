@@ -81,6 +81,11 @@ class Card3 extends StatelessWidget {
                       print('delete');
                     },
                   ),
+                  Chip(
+                    label: Text('Greens',
+                        style: FooderlichTheme.darkTextTheme.bodyLarge),
+                    backgroundColor: Colors.black.withOpacity(0.7),
+                  )
                 ],
               ),
             ),
