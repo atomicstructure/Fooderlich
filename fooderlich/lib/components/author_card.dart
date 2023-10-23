@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:fooderlich/circle_image.dart';
-import 'package:fooderlich/fooderlich_theme.dart';
+
+import '../fooderlich_theme.dart';
+import 'circle_image.dart';
 
 class AuthorCard extends StatefulWidget {
+  final String authorName;
+  final String title;
+  final ImageProvider? imageProvider;
+
   const AuthorCard({
     super.key,
     required this.authorName,
@@ -10,30 +15,18 @@ class AuthorCard extends StatefulWidget {
     this.imageProvider,
   });
 
-  final String authorName;
-  final String title;
-  final ImageProvider? imageProvider;
-
   @override
-  State<AuthorCard> createState() => _AuthorCardState();
+  AuthorCardState createState() => AuthorCardState();
 }
 
-class _AuthorCardState extends State<AuthorCard> {
+class AuthorCardState extends State<AuthorCard> {
   bool _isFavorited = false;
-
-  favourite() {
-    setState(() {
-      _isFavorited = !_isFavorited;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
-    // TODO:Replace return Container(...);
     return Container(
       padding: const EdgeInsets.all(16),
       child: Row(
-        // TODO: add alignment
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
@@ -42,30 +35,31 @@ class _AuthorCardState extends State<AuthorCard> {
                 imageProvider: widget.imageProvider,
                 imageRadius: 28,
               ),
-              const SizedBox(
-                width: 8,
-              ),
+              const SizedBox(width: 8),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     widget.authorName,
-                    style: FooderlichTheme.lightTextTheme.displayMedium,
+                    style: FooderlichTheme.lightTextTheme.headline2,
                   ),
                   Text(
                     widget.title,
-                    style: FooderlichTheme.lightTextTheme.displaySmall,
-                  ),
+                    style: FooderlichTheme.lightTextTheme.headline3,
+                  )
                 ],
               ),
             ],
           ),
-          // TODO: add IconButton
           IconButton(
             icon: Icon(_isFavorited ? Icons.favorite : Icons.favorite_border),
             iconSize: 30,
             color: Colors.red[400],
-            onPressed: favourite,
+            onPressed: () {
+              setState(() {
+                _isFavorited = !_isFavorited;
+              });
+            },
           ),
         ],
       ),
