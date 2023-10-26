@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fooderlich/components/friend_post_list_view.dart';
 import '../components/components.dart';
 import '../models/models.dart';
 import '../api/mock_fooderlich_service.dart';
@@ -25,10 +26,8 @@ class ExploreScreen extends StatelessWidget {
                   height: 16,
                 ),
                 // TODO: Replace this with FriendPostListView
-                Container(
-                  height: 400,
-                  color: Colors.green,
-                ),
+                FriendPostListView(
+                    friendPosts: snapshot.data?.friendPosts ?? [])
               ],
             );
           } else {
