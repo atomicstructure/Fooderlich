@@ -13,8 +13,6 @@ class Home extends StatefulWidget {
 }
 
 class HomeState extends State<Home> {
-  // int _selectedIndex = 0;
-
   static List<Widget> pages = <Widget>[
     // TODO: Replace with ExploreScreen
     ExploreScreen(),
@@ -22,12 +20,6 @@ class HomeState extends State<Home> {
     RecipeScreen(),
     const GroceryScreen(),
   ];
-
-  // void _onItemTapped(int index) {
-  //   setState(() {
-  //     // _selectedIndex = index;
-  //   });
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +31,7 @@ class HomeState extends State<Home> {
             style: Theme.of(context).textTheme.titleLarge,
           ),
         ),
+        // TODO: Replace body
         body: pages[tabManager.selectedTab],
         bottomNavigationBar: BottomNavigationBar(
           selectedItemColor:
