@@ -97,7 +97,9 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
             // TODO: Add date picker
             buildDateField(context),
             // TODO: Add time picker
+            buildTimeField(context),
             // TODO: Add color picker
+            buildColorPicker(context),
             // TODO: Add slider
             // TODO: Add Grocery Tile
           ],
@@ -226,7 +228,93 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
       ],
     );
   }
+
   // TODO: Add buildTimeField()
+  Widget buildTimeField(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'Time of Day',
+              style: GoogleFonts.lato(fontSize: 28.0),
+            ),
+            TextButton(
+              child: const Text('Select'),
+              onPressed: () async {
+                final timeOfDay = await showTimePicker(
+                  context: context,
+                  initialTime: TimeOfDay.now(),
+                );
+                setState(() {
+                  if (timeOfDay != null) {
+                    _timeOfDay = timeOfDay;
+                  }
+                });
+              },
+            )
+          ],
+        ),
+        Text(
+          _timeOfDay.format(context),
+        ),
+      ],
+    );
+  }
+
   // TODO: Add buildColorPicker()
+  Widget buildColorPicker(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Row(
+          children: [
+            Container(
+              height: 50,
+              width: 10,
+              color: _currentColor,
+            ),
+            const SizedBox(
+              width: 8,
+            ),
+            Text(
+              'Color',
+              style: GoogleFonts.lato(fontSize: 28),
+            ),
+          ],
+        ),
+        TextButton(
+            onPressed: () {
+              showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      content: BlockPicker(
+                          onColorChanged: (color) {
+                            setState(() {
+                              _currentColor = color;
+                            });
+                          },
+                          pickerColor: Colors.white),
+                      actions: [
+                        TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: const Text('Save'))
+                      ],
+                    );
+                  });
+            },
+            child: const Text('Select'))
+      ],
+    );
+  }
+
   // TODO: Add buildQuantityField()
+  Widget buildQuantityField(BuildContext context) {
+    return Column();
+  }
 }
