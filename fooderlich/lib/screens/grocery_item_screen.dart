@@ -83,7 +83,9 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
         elevation: 0.0,
         title: Text(
           'Grocery Item',
-          style: GoogleFonts.lato(fontWeight: FontWeight.w600),
+          style: GoogleFonts.lato(
+            fontWeight: FontWeight.w600,
+          ),
         ),
       ),
       body: Container(
@@ -99,6 +101,9 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
             // TODO: Add time picker
             buildTimeField(context),
             // TODO: Add color picker
+            const SizedBox(
+              height: 10.0,
+            ),
             buildColorPicker(context),
             // TODO: Add slider
             const SizedBox(
