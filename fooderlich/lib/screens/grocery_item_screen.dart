@@ -77,6 +77,26 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
           IconButton(
             onPressed: () {
               // TODO: Add callback handler
+              final groceryItem = GroceryItem(
+                id: widget.originalItem?.id ?? const Uuid().v8(),
+                name: _nameController.text,
+                importance: _importance,
+                color: _currentColor,
+                quantity: _currentSliderValue,
+                date: DateTime(
+                  _dueDate.year,
+                  _dueDate.month,
+                  _dueDate.day,
+                  _dueDate.hour,
+                  _dueDate.minute,
+                  _dueDate.second,
+                ),
+              );
+              if (widget.isUpdating) {
+                widget.onUpdate(groceryItem);
+              } else {
+                widget.onCreate(groceryItem);
+              }
             },
             icon: const Icon(Icons.check),
           )
@@ -178,9 +198,7 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
               selectedColor: Colors.black,
               selected: _importance == Importance.low,
               onSelected: (selected) {
-                setState(() {
-                  _importance == Importance.low;
-                });
+                setState(() => _importance == Importance.low);
               },
             ),
             ChoiceChip(
@@ -191,9 +209,7 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
               selectedColor: Colors.black,
               selected: _importance == Importance.medium,
               onSelected: (selected) {
-                setState(() {
-                  _importance = Importance.medium;
-                });
+                setState(() => _importance = Importance.medium);
               },
             ),
             ChoiceChip(
@@ -204,9 +220,7 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
               selectedColor: Colors.black,
               selected: _importance == Importance.high,
               onSelected: (selected) {
-                setState(() {
-                  _importance = Importance.high;
-                });
+                setState(() => _importance = Importance.high);
               },
             )
           ],
