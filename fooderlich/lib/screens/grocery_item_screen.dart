@@ -91,8 +91,9 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
         child: ListView(
           children: [
             // TODO: Add name TextField
-            buildNameField()
+            buildNameField(),
             // TODO: Add Importance selection
+            buildImportanceField()
             // TODO: Add date picker
             // TODO: Add time picker
             // TODO: Add color picker
@@ -132,7 +133,63 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
       ],
     );
   }
+
   // TODO: Add buildImportanceField()
+  Widget buildImportanceField() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Importance',
+          style: GoogleFonts.lato(fontSize: 28.0),
+        ),
+        Wrap(
+          spacing: 10.0,
+          children: [
+            ChoiceChip(
+              label: const Text(
+                'low',
+                style: TextStyle(color: Colors.white),
+              ),
+              selectedColor: Colors.black,
+              selected: _importance == Importance.low,
+              onSelected: (selected) {
+                setState(() {
+                  _importance == Importance.low;
+                });
+              },
+            ),
+            ChoiceChip(
+              label: const Text(
+                'medium',
+                style: TextStyle(color: Colors.white),
+              ),
+              selectedColor: Colors.black,
+              selected: _importance == Importance.medium,
+              onSelected: (selected) {
+                setState(() {
+                  _importance = Importance.medium;
+                });
+              },
+            ),
+            ChoiceChip(
+              label: const Text(
+                'high',
+                style: TextStyle(color: Colors.white),
+              ),
+              selectedColor: Colors.black,
+              selected: _importance == Importance.high,
+              onSelected: (selected) {
+                setState(() {
+                  _importance = Importance.high;
+                });
+              },
+            )
+          ],
+        )
+      ],
+    );
+  }
   // TODO: ADD buildDateField()
   // TODO: Add buildTimeField()
   // TODO: Add buildColorPicker()
